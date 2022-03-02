@@ -1,0 +1,38 @@
+﻿#header.nav_fixed {
+  position:fixed;
+  background-color: #FFFFFF;
+  border-bottom:rgba(0,0,0,0.08) 1px solid;
+}
+
+.daterangepicker .ranges {
+  width: 0px;
+  text-align: left;
+}
+
+.daterangepicker .input-mini, .daterangepicker .daterangepicker_input i, .daterangepicker td.active, .daterangepicker td.active:hover {
+  color: #6988A9;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: #6988A9;
+  color: #fff;
+}
+.daterangepicker .applyBtn
+{
+  background-color: #6988A9;
+  border-color: #6988A9;
+}
+
+@media all and (max-width: 1200px) {
+  .daterangepicker {
+    position: fixed !important;
+    left: auto !important;
+    top: 0 !important;
+    z-index: 99999999 !important;
+    height: 100% !important;
+    width: 100% !important;
+  }
+  .daterangepicker .drp-calendar{
+    max-width:100% !important;
+  }
+}

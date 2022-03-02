@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarRental.Frontend</title>
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.min.js")"></script>
+    <script src="@Url.Content("~/js/moment.min.js")"></script>
+    <script src="@Url.Content("~/js/daterangepicker.min.js")"></script>
+    <link href="@Url.Content("~/css/daterangepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/plugins/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/essentials.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/layout.css")" rel="stylesheet" />    
+    <link href="@Url.Content("~/assets/css/header-1.css")" rel="stylesheet" />    
+    <link href="@Url.Content("~/assets/css/color_scheme/green.css")" rel="stylesheet" />    
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div id="header" class="navbar-toggleable-md sticky clearfix fixed" style="z-index: 999999;">
+        <header id="topNav">
+            <div class="container">
+                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="logo float-left" href="index.html">
+                    <img src="assets/images/_smarty/logo_dark.png" alt="" />
+                </a>
+                <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+                    <nav class="nav-main">
+                        <ul id="topMain" class="nav nav-pills nav-main">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    HOME
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" href="#">
+                                            HOME CORPORATE
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="index-corporate-1.html">CORPORATE LAYOUT 1</a></li>
+                                            <li><a href="index-corporate-2.html">CORPORATE LAYOUT 2</a></li>
+                                            <li><a href="index-corporate-3.html">CORPORATE LAYOUT 3</a></li>
+                                            <li><a href="index-corporate-4.html">CORPORATE LAYOUT 4</a></li>
+                                            <li><a href="index-corporate-5.html">CORPORATE LAYOUT 5</a></li>
+                                            <li><a href="index-corporate-6.html">CORPORATE LAYOUT 6</a></li>
+                                            <li><a href="index-corporate-7.html">CORPORATE LAYOUT 7</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" href="#">
+                                            HOME PORTFOLIO
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="index-portfolio-1.html">PORTFOLIO LAYOUT 1</a></li>
+                                            <li><a href="index-portfolio-2.html">PORTFOLIO LAYOUT 2</a></li>
+                                            <li><a href="index-portfolio-masonry.html">PORTFOLIO MASONRY</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" href="#">
+                                            HOME BLOG
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="index-blog-1.html">BLOG LAYOUT 1</a></li>
+                                            <li><a href="index-blog-2.html">BLOG LAYOUT 2</a></li>
+                                            <li><a href="index-blog-3.html">BLOG LAYOUT 3</a></li>
+                                            <li><a href="index-blog-4.html">BLOG LAYOUT 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#">
+                                    PAGES
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" href="#">
+                                            MISCELLANEOUS
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="portfolio-single-project.html">PROJECT PAGE</a></li>
+                                            <li><a href="page-category.html">CATEGORY PAGE</a></li>
+                                            <li><a href="page-cookie-alert.html">COOKIE ALERT</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" href="#">
+                                            ABOUT
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="page-about-us-1.html">ABOUT US - LAYOUT 1</a></li>
+                                            <li><a href="page-about-us-2.html">ABOUT US - LAYOUT 2</a></li>
+                                            <li><a href="page-about-us-3.html">ABOUT US - LAYOUT 3</a></li>
+                                            <li><a href="page-about-us-4.html">ABOUT US - LAYOUT 4</a></li>
+                                            <li><a href="page-about-us-5.html">ABOUT US - LAYOUT 5</a></li>
+                                            <li><a href="page-about-me-1.html">ABOUT ME - LAYOUT 1</a></li>
+                                            <li><a href="page-about-me-2.html">ABOUT ME - LAYOUT 2</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    @RenderBody()
+
+    <script type="text/javascript">var plugin_path = '@Url.Content("~/assets/plugins/")';</script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/scripts.js")"></script>
+    <script src="@Url.Content("~/js/site.js")"></script>
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" />
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
+</body>
+</html>

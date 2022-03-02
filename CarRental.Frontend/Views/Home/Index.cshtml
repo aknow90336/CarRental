@@ -1,0 +1,144 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles{
+    <link href="@Url.Content("~/css/layout.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/css/home.css")" rel="stylesheet" />
+    <style type="text/css">
+        #booking-container
+        {
+            height:100%;
+            width:100%;
+            position: relative;
+            z-index:1;
+        }
+        #booking-content {
+            width:70%;
+            background-color:#FFFFFF;
+            z-index:1;
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            --tw-shadow: 0px 3px 6px hsla(0,0%,53.3%,0.1607843137254902);
+            box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
+            border-radius: 32px;
+        }
+        .search-wrapper{
+            position: relative;
+            height:70px;
+            padding: 20px 0;
+        }
+        .search-text{
+            position: absolute;
+            left: 20px;
+            top: 5px;
+        }
+        .search-bottom{
+            position: absolute;
+            right:20px;
+            bottom:5px;
+            border: none;
+        }
+        .search-drop-down-list
+        {
+            color: #000000 !important;
+            border: none;
+            max-height: 30px !important;
+            padding: 4px 30px !important;
+        }
+        .search-btn
+        {
+            width: 70px;
+            border-radius: 32px;
+            background-color: #6988A9 !important;
+            position: absolute;
+            right: 10px;
+        }
+    </style>
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:100vh">
+    <div id ="booking-container" class="carousel-inner" role="listbox">
+        <div id="booking-content">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper">
+
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">起始時間</div>
+                    <div id="start-date" class="time-range-input search-bottom">01-01</div>
+                    <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" class="search-bottom" style="visibility:hidden" />
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">結束時間</div>
+                    <div id="end-date" class="time-range-input search-bottom">02-25</div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">座位數</div>
+                    <div class="search-bottom">
+                        <select class="form-control search-drop-down-list">
+                            <option value="">座位數</option>
+                            <option value="1">5 人以下</option>
+                            <option value="2">6 人以上</option>
+                            <option value="3">9 人款式</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper">
+                    <button href="#" class="btn btn-default btn-featured btn-inverse btn-round search-btn" onclick="search()">
+                        <i class="fa fa-search btn-round"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item active" style="height:100%;width:100%" alt="First slide">
+            <section class="sliderImg d-block img-fluid" style="height:100%;width:100%"></section>
+        </div>
+        <div class="carousel-item" style="height: 100%">
+            <section class="sliderImg2 d-block img-fluid" alt="Second slide" style="height:100%;width:100%"></section>
+        </div>
+    </div>
+</div>
+<div style="height:1000px"> 
+    
+</div>
+@section Scripts
+{
+   <script type="text/javascript" charset="utf-8">
+        function search(){
+
+            window.location.href = '@Url.Action("Car", "Search")'+'?a=4';
+
+        }
+
+        $(document).ready(function() {
+            $(function() {
+                $('input[name="daterange"]').daterangepicker({
+                    opens: 'right',
+                    locale : {
+                        applyLabel : "確定",
+                        cancelLabel : "取消",
+                        fromLabel : "開始日期",
+                        toLabel : "結束日期",
+                        customRangeLabel : "自訂日期區間",
+                        daysOfWeek : [ "日", "一", "二", "三", "四", "五", "六" ],
+                        monthNames : [ "1月", "2月", "3月", "4月", "5月", "6月",
+                        "7月", "8月", "9月", "10月", "11月", "12月" ],
+                        firstDay : 1
+                    }
+                }, function(start, end, label) {
+                    $("#start-date").html(start.format('MM-DD'))
+                    $("#end-date").html(end.format('MM-DD'))
+                });
+            });
+
+            $(".time-range-input").click(function(){
+                $('input[name="daterange"]').click()
+            })
+        });
+   </script>
+}

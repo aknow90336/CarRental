@@ -1,0 +1,7 @@
+obj/
+bin/
+.vscode/
+BFF/.vs
+.vs
+*.user
+*.user
