@@ -1,0 +1,112 @@
+﻿@model  CarRental.Frontend.Models.CarSearchModel
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+<script>
+ var map;
+      function initMap() {
+         var location = {lat: 25.048794000, lng: 121.589301000};
+         map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: location,
+            gestureHandling: 'greedy'
+         });
+         var marker = new google.maps.Marker({
+            position: location,
+            map: map
+         });
+      }
+
+      function initSearch() {
+
+         let options = {
+            componentRestrictions: { country: 'tw' } // 限制在台灣範圍
+         };
+         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('PickUpLocation'), options)
+
+         this.autocomplete.addListener('place_changed', () => {
+
+            this.place = this.autocomplete.getPlace(); // 地點資料存進place
+            
+            // 確認回來的資料有經緯度
+            if(this.place.geometry) {
+            
+                  // 改變map的中心點
+                  let searchCenter = this.place.geometry.location;
+                  
+                  // panTo是平滑移動、setCenter是直接改變地圖中心
+                  map.panTo(searchCenter);
+
+                  // 在搜尋結果的地點上放置標記
+                  let marker = new google.maps.Marker({
+                     position: searchCenter,
+                     map: map
+                  });
+
+                  // info window
+                  let infowindow = new google.maps.InfoWindow({
+                     content: this.place.formatted_address
+                  });
+                  infowindow.open(map, marker);
+            }
+         });
+      }
+   </script>
+<div style="margin-top: 50px;margin-right:0px;margin-left:0px" class="row" >
+	<div id="wrapper" style="width: 100%;">
+      <div class="car-detail-carousel-wrapper" style="margin-left: 13%;margin-right: 13%;">
+         <div class="lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+            <div class="owl-carousel-2 owl-centered-focus" data-plugin-options='{
+                  "responsiveBaseElement":	"#wrapper", 
+                  "loop":						true, 
+                  "margin":					0, 
+                  "nav":						true, 
+                  "dots":						false, 
+                  "center":					true, 
+                  "slideBy":					"1", 
+                  "autoplay":					true, 
+                  "autoplayTimeout":			4500, 
+                  "autoWidth":				false,
+                  "merge":					true,
+                  "rtl":						false,
+                  "animateIn":				"flipInX",
+                  "animateOut":				"flipOutX",
+                  "responsive": {
+                     "0":	{"items":1},
+                     "600":	{"items":2},
+                     "1000":	{"items":2}
+                  }
+               }'>
+               <a href="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3088/20210111152626488.jpg" class="image-hover-plus image-hover-overlay">
+                  <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3088/20210111152626488.jpg" alt="">
+               </a>
+               <a href="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/2112/20210709180401059.jpg" class="image-hover-plus image-hover-overlay">
+                  <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/2112/20210709180401059.jpg" alt="">
+               </a>
+               <a href="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3764/20220304101307232.jpg" class="image-hover-plus image-hover-overlay">
+                  <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3764/20220304101307232.jpg" alt="">
+               </a>
+            </div>
+         </div>
+      </div>
+   </div>    
+</div> 
+<div class="container" style="height: 500px;">
+   
+</div>
+<div id="map" class="map">
+
+</div>
+
+@section Scripts
+{
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
+}
+
+
+
+

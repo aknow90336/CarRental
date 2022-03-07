@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarRental.Frontend</title>
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.min.js")"></script>
+    <script src="@Url.Content("~/js/moment.min.js")"></script>
+    <script src="@Url.Content("~/js/daterangepicker.min.js")"></script>
+    <link href="@Url.Content("~/css/daterangepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/plugins/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/essentials.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/layout.css")" rel="stylesheet" />    
+    <link href="@Url.Content("~/assets/css/header-1.css")" rel="stylesheet" />    
+    <link href="@Url.Content("~/assets/css/color_scheme/green.css")" rel="stylesheet" />    
+    @RenderSection("Styles", false)
+</head>
+<body>
+
+    @RenderBody()
+    
+    <script type="text/javascript">var plugin_path = '@Url.Content("~/assets/plugins/")';</script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/scripts.js")"></script>
+    <script src="@Url.Content("~/js/site.js")"></script>
+    <link href="@Url.Content("~/css/site.css")" rel="stylesheet" />
+    @await RenderSectionAsync("Scripts", required: false)
+    @* <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script> *@
+</body>
+</html>

@@ -3,7 +3,10 @@
   background-color: #FFFFFF;
   border-bottom:rgba(0,0,0,0.08) 1px solid;
 }
-
+.daterangepicker  {
+  margin-top: 25px;
+  margin-left: 50px;
+}
 .daterangepicker .ranges {
   width: 0px;
   text-align: left;
@@ -23,7 +26,17 @@
   border-color: #6988A9;
 }
 
+.pac-logo::after
+{
+  background-image: none !important;
+}
+
 @media all and (max-width: 1200px) {
+  
+  .daterangepicker  {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
   .daterangepicker {
     position: fixed !important;
     left: auto !important;
@@ -34,5 +47,39 @@
   }
   .daterangepicker .drp-calendar{
     max-width:100% !important;
+  }
+  .date-time-wrapper
+  {
+    right: unset !important;
+  }
+  .search-text{
+    left: 15% !important;
+  }
+  #booking-content {
+    width: 95%;
+  }
+  .search-btn{
+    display: none;
+  }
+  .app-button{
+    display: block;
+  }
+  .search-bottom{
+    right:unset;
+  }
+  #card-map-wrapper
+  {
+  }
+  .map-test{
+      height: 100vh !important;
+      width: 100%  !important;
+  }
+  #card-map-wrapper{
+    margin-top: 0px !important;
+  }
+  .car-detail-carousel-wrapper
+  {
+    margin-left: 0px;
+    margin-right: 0px;
   }
 }

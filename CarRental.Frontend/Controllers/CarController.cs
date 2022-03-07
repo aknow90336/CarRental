@@ -9,17 +9,23 @@ using CarRental.Frontend.Models;
 
 namespace CarRental.Frontend.Controllers
 {
-    public class SearchController : Controller
+    public class CarController : Controller
     {
-        private readonly ILogger<SearchController> _logger;
+        private readonly ILogger<CarController> _logger;
 
-        public SearchController(ILogger<SearchController> logger)
+        public CarController(ILogger<CarController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        public IActionResult Car(SearchModel model)
+        public IActionResult List(CarSearchModel model)
+        {
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Detail(string id)
         {
             return View();
         }
