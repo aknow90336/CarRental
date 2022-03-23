@@ -8,6 +8,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarRental.Service\CarRental.Service.csproj" />
+  </ItemGroup>
   
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
