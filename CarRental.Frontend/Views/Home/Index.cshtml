@@ -76,12 +76,15 @@
 
         .time-range-input
         {
-        cursor: pointer;
+            cursor: pointer;
         }
 
         #booking-content
         {
-        font-size: 18px;
+            font-size: 18px;
+        }
+        .pointer{
+            cursor: pointer;
         }
     </style>
 }
@@ -90,14 +93,14 @@
     <div id ="booking-container" class="carousel-inner" role="listbox">
         <div id="booking-content">
             <div class="row">
-                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper">
-                    <input id="search-input" style="margin-left: 10%;" class="controls" type="text" placeholder="租車地點?" value="台北市"/>
+                <div id="search-input-wrapper" class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper pointer">
+                    <input id="search-input" style="margin-left: 10%;" class="controls pointer" type="text" placeholder="租車地點?" value="台北市"/>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
                     <div class="search-text">起始時間</div>
                     <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
                         <text id="start-date" class="time-range-input">01-01</text>
-                        <select id="start-time" style="font-size: 18px;">
+                        <select id="start-time" style="font-size: 18px;" class="pointer">
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
@@ -119,7 +122,7 @@
                     <div class="search-text">結束時間</div>
                     <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
                         <text id="end-date" class="time-range-input">02-01</text>
-                        <select id="end-time"  style="font-size: 18px;">
+                        <select id="end-time"  style="font-size: 18px;" class="pointer">
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
                             <option value="12:00">12:00</option>
@@ -139,7 +142,7 @@
                 <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
                     <div class="search-text">座位數</div>
                     <div class="search-bottom">
-                        <select id="car-seat" class="form-control search-drop-down-list" style="font-size: 18px;">
+                        <select id="car-seat" class="form-control search-drop-down-list pointer" style="font-size: 18px;">
                             <option value="">座位數</option>
                             <option value="5">5 人以下</option>
                             <option value="6">6 人以上</option>
@@ -171,6 +174,14 @@
 @section Scripts
 {
    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){<!--from ww  w .  j  a va 2s  .co  m-->
+            $("#search-input-wrapper").click(function(){
+                $("#search-input").trigger("focus");
+            });
+            $("#search-input-wrapper").click(function(){
+                $("#search-input").triggerHandler("focus");
+            });
+        });
         var lat;
         var lng;
         function initMap() {

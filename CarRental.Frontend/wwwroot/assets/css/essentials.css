@@ -3606,7 +3606,6 @@ img.mfp-img {
 	**/
 	.owl-carousel {
 		overflow:hidden;
-		margin-bottom:20px;
 		position:relative;
 	}
 	.owl-carousel.owl-padding-0 .owl-item {
