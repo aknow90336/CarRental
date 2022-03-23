@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
-    <ProjectReference Include="..\CarRental.DataAccess\CarRental.DataAccess.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
