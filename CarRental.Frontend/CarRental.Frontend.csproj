@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CarRental.Service\CarRental.Service.csproj" />
+    <ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
   </ItemGroup>
   
   <PropertyGroup>

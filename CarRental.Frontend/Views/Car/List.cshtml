@@ -1,7 +1,9 @@
-﻿@model  CarRental.Frontend.Models.CarSearchModel
+﻿@model  CarRental.Frontend.Models.Car.CarListResponseModel
+
 @{
     Layout = "_Layout2";
 }
+
 <style>
     #map {
         height: 400px;
@@ -86,69 +88,47 @@
         <div style="height: 100px;"> 
 
         </div>
-        <div class="car-card row"> 
-            <div class="col-lg-5 col-md-5 col-sm-12"> 
-                <div style="height: 220px;" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
-                    <div>
-                        <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3516/20210929152220536.jpg" alt="">
+        @foreach (var item in this.Model.CarList)
+        {
+            <div class="car-card row"> 
+                <div class="col-lg-5 col-md-5 col-sm-12"> 
+                    <div style="height: 220px;" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
+                        <div>
+                            <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3516/20210929152220536.jpg" alt="">
+                        </div>
+                        <div>
+                            <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3518/20210929152459142.jpg" alt="">
+                        </div>
                     </div>
-                    <div>
-                        <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3518/20210929152459142.jpg" alt="">
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12"> 
+                    <div class="row" style="width: 100%;">
+                        <div class="col-12"><h3 style="margin:0px;">不限廠牌小型車</h3></div>
+                        <div class="col-12">泓運租車</div>
                     </div>
+                    <div class="row"  style="width: 100%;padding:0px 12px">
+                        <ul class="list-inline">
+                            <li>
+                                <i class="fa fa-briefcase"></i><span>4年內</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-briefcase"></i><span>@item.Seat 人座</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-briefcase"></i><span>@item.DoorNum 門</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-briefcase"></i><span>GPS</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="bottom:0px;right:0px;position: absolute;"> <h3 style="margin:0px;">NTD $3,400</h3></div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7 col-sm-12"> 
-                <div class="row" style="width: 100%;">
-                    <div class="col-12"><h3 style="margin:0px;">不限廠牌小型車</h3></div>
-                    <div class="col-12">泓運租車</div>
-                </div>
-                <div class="row"  style="width: 100%;padding:0px 12px">
-                    <ul class="list-inline">
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>4年內</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>5人座</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>自排</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>GPS</span>
-                        </li>
-                    </ul>
-                </div>
-                <div style="bottom:0px;right:0px;position: absolute;"> <h3 style="margin:0px;">NTD $3,400</h3></div>
-            </div>
-        </div>
-        <div class="car-card row"> 
-            <div class="col-lg-5 col-md-5 col-sm-12"> 
-                <div style="height: 220px;" class="owl-carousel buttons-autohide controlls-over" data-plugin-options='{"singleItem": true, "autoPlay": false, "navigation": true, "pagination": true, "transitionStyle":"fadeUp"}'>
-                    <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/3088/20210111152626488.jpg" alt="">
-                    <img class="img-fluid" src="https://gogoout-tw.s3-ap-northeast-1.amazonaws.com/car/2112/20210709180401059.jpg" alt="">
-                </div>
-            </div>
-            <div class="col-lg-7 col-md-7 col-sm-12"> 
-                <div class="row" style="width: 100%;">
-                    <div class="col-12"><h3 style="margin:0px;">豐田 CAMRY</h3></div>
-                    <div class="col-12">泓運租車</div>
-                </div>
-                <div class="row"  style="width: 100%;padding:0px 12px">
-                    <ul class="list-inline">
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>8年內</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>5人座</span>
-                        </li>
-                        <li>
-                            <i class="fa fa-briefcase"></i><span>自排</span>
-                        </li>
-                    </ul>
-                </div>
-                <div style="bottom:0px;right:0px;position: absolute;"> <h3 style="margin:0px;">NTD $3,400</h3></div>
-            </div>
-        </div>
+        }
+
+       
+        
     </div>
     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
         <div id="map" class="map map-test"></div>

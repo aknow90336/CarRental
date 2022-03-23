@@ -8,6 +8,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CarRental.DataAccess.DB.CarDB;
+using Microsoft.EntityFrameworkCore;
+using CarRental.DataAccess.Interface;
+using CarRental.DataAccess.Repository;
+using CarRental.Service;
+using CarRental.Service.Impl;
 
 namespace CarRental.Frontend
 {
@@ -20,13 +26,16 @@ namespace CarRental.Frontend
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Singleton Scoped Transient
+            // IOC DI
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarService, CarService>();
+            services.AddDbContext<CarDBContext>(options => options.UseMySql("server=54.95.104.25;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
             services.AddControllersWithViews(x=>x.SuppressAsyncSuffixInActionNames = false).AddRazorRuntimeCompilation();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,7 +45,6 @@ namespace CarRental.Frontend
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
