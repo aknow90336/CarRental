@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\CarRental.Repository\CarRental.Repository.csproj" />
     <ProjectReference Include="..\CarRental.Domain\CarRental.Domain.csproj" />
   </ItemGroup>
 
