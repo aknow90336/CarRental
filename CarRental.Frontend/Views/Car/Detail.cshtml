@@ -59,7 +59,7 @@
 <div style="margin-top: 50px;margin-right:0px;margin-left:0px" class="row" >
 	<div id="wrapper" style="width: 100%;">
       <div class="car-detail-carousel-wrapper" style="margin-left: 18%;margin-right: 18%;">
-         <div style="width: 800px;" class="lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
+         <div style="width: 800px;margin:0px auto;" class="lightbox" data-plugin-options='{"delegate": "a", "gallery": {"enabled": true}}'>
             <div class="owl-carousel-2 owl-centered-focus" data-plugin-options='{
                   "responsiveBaseElement":	"#wrapper", 
                   "loop":						true, 
@@ -96,7 +96,92 @@
    </div>    
 </div> 
 <div class="container" style="height: 500px;">
-   
+   <div class="container" style="width: 800px;height: 500px;">
+   <div class="car-desc">
+      <h1 style="margin:0px auto;padding:5px;">豐田 Yaris</h1>
+      <h4 style="margin:0px auto;padding: 10px;">車齡4年內 自排 5人座 4門 進口</h4>
+   </div>
+   <div class="date-desc-row">
+    <table class="dete-table-striped" style="margin:0px auto;padding: 10px;">
+        <thead>
+            <tr style="text-align:center">
+               <th>取車日</th>
+               <th>時間</th>
+               <th>還車日</th>
+               <th>時間</th>
+               <th>地點</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               <td>
+                  <input class="form-control" type="date" id="pick-up-date" value="2022-03-25" style="width: 160px;"/>
+               </td>
+               <td>
+                  <input class="form-control" type="time" id="pick-up-time" value="10:00" style="width: 150px;"/>
+               </td>
+               <td>
+                  <input class="form-control" type="date" id="drop-off-date" value="2022-04-01" style="width: 160px;"/>
+               </td>
+               <td>
+                  <input class="form-control" type="time" id="drop-off-time" value="10:00" style="width: 150px;"/>
+               </td>
+               <td>
+                  <select id="pick-up-location-selector">
+                  <option value="1">台北車站</option>
+                  <option value="2">台北科技大樓站</option>
+                  <option value="3">松山車站</option>
+                  </select>
+               </td>
+            </tr>
+        </tbody>
+   </table>
+   <div class="equipment-detail" style="padding: 10px;">
+      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
+         <input type="checkbox" id="navi" name="navi">
+         <label for="scales">行車導航</label>
+      </span>
+      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
+         <input type="checkbox" name="safety-seat"/>
+         <label for="scales">兒童座椅</label>
+      </span>
+      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
+         <input type="checkbox" name="recordor"/>
+         <label for="scales">行車記錄器</label>
+      </span>
+   </div>
+   <div class="price-desc-row" style="margin:0px auto;padding: 10px;">
+      <table class="price-table-striped" style="width: 600px;">
+        <label for="price-table-label">價格</label>
+        <tbody style="padding:10px;">
+           <tr>
+              <td>
+                 單日租車價
+              </td>
+              <td>
+                 NT$ 3000
+              </td>
+           </tr>
+           <tr>
+              <td>
+                 保險
+              </td>
+              <td>
+                 NT$ 120
+              </td>
+           </tr>
+           <tr>
+              <td>
+                 總價
+              </td>
+              <td>
+                 NT$ 5600
+              </td>
+           </tr>
+        </tbody>
+      </table>
+   </div>
+   </div>
 </div>
 <div id="map" class="map">
 
