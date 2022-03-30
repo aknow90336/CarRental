@@ -22,11 +22,10 @@ namespace CarRental.Service.Impl
             {
                 result.Add(new CarDomain(){
                     DoorNum = item.DoorNum,
-                    Seat = item.Seat,
-                    Id = item.Id
+                    Seat = item.Seat
                 });
             }
-
+            
             return result;
         }
     }

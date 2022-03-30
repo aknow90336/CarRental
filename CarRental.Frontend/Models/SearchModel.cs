@@ -12,5 +12,7 @@ namespace CarRental.Frontend.Models
         public decimal Lat { get; set; }
 
         public decimal Lng { get; set; }
+
+        public int Id { get; set; }
      }
 }
