@@ -28,8 +28,6 @@ namespace CarRental.Frontend
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Singleton Scoped Transient
-            // IOC DI
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICarService, CarService>();
             services.AddDbContext<CarDBContext>(options => options.UseMySql("server=54.95.104.25;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
@@ -47,7 +45,9 @@ namespace CarRental.Frontend
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

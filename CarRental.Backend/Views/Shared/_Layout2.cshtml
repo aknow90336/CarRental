@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarRental.Backend</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/plugins/bootstrap/css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/essentials.css")" rel="stylesheet"  type="text/css" />
+    <link href="@Url.Content("~/assets/css/layout.css")" rel="stylesheet" type="text/css" />    
+    <link href="@Url.Content("~/assets/css/color_scheme/blue.css")" rel="stylesheet" type="text/css" />    
+    @* <link href="@Url.Content("~/css/site.css")" rel="stylesheet" /> *@
+    @RenderSection("Styles", false)
+</head>
+<body>
+    @RenderBody()
+    <script type="text/javascript">var plugin_path = '@Url.Content("~/assets/plugins/")';</script>
+    <script type="text/javascript" src="@Url.Content("~/assets/plugins/jquery/jquery-2.2.3.min.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/assets/js/app.js")"></script> 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -3,8 +3,8 @@
 @{
     Layout = "_Layout2";
 }
-
-<style>
+@section Styles{
+ <style type="text/css">
     #map {
         height: 400px;
         width: 60vw;
@@ -19,7 +19,86 @@
         margin-right: 0px; 
         margin-left: 0px
     }
+    #booking-container
+    {
+        height:100%;
+        width:100%;
+        position: relative;
+        z-index:1;
+    }
+    #booking-content {
+        width:65%;
+        background-color:#FFFFFF;
+        z-index:1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        --tw-shadow: 0px 3px 6px hsla(0,0%,53.3%,0.1607843137254902);
+        box-shadow: var(--tw-ring-offset-shadow,0 0 transparent),var(--tw-ring-shadow,0 0 transparent),var(--tw-shadow);
+        border-radius: 32px;
+    }
+    .search-wrapper{
+        position: relative;
+        height:70px;
+        padding: 20px 0;
+    }
+    .search-text{
+        position: absolute;
+        left: 20px;
+        top: 5px;
+    }
+    .search-bottom{
+        position: absolute;
+        right:20px;
+        bottom:5px;
+        border: none;
+    }
+    .search-drop-down-list
+    {
+        color: #000000 !important;
+        border: none;
+        max-height: 30px !important;
+        padding: 4px 30px !important;
+    }
+    .search-btn
+    {
+        width: 70px;
+        border-radius: 32px;
+        background-color: #6988A9 !important;
+        position: absolute;
+        right: 10px;
+    }
+    select {
+        color: #666;
+        border: unset; 
+        height: unset; 
+        padding: unset; 
+        outline: unset; 
+        line-height: unset; 
+        -webkit-border-radius: unset; 
+        -moz-border-radius: unset;
+        border-radius: unset; 
+    }
+    #search-input
+    {
+        border: none !important;
+    }
+    .time-range-input
+    {
+        cursor: pointer;
+    }
+    #booking-content
+    {
+        font-size: 18px;
+    }
+    .pointer{
+        cursor: pointer;
+    }
 </style>
+}
 <script>
     var map;
     function initMap() {
@@ -73,9 +152,79 @@
 </script>
 
 <div style="background-color: #ff0000;width: 100%;height:100px;position: fixed;z-index: 99999;">
-    <div id="test" style="width: 300px; height:100%;background-color: #00ff00;cursor:pointer">
-
+    
+    <div id="booking-container" style="width: 100%; height:100%;background-color: #FFFFFF;cursor:pointer">
+        <div id="booking-content">
+            <div class="row">
+                <div id="search-input-wrapper" class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper pointer">
+                    <input id="search-input" style="margin-left: 10%;" class="controls pointer" type="text" placeholder="租車地點?" value="台北市"/>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">起始時間</div>
+                    <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
+                        <text id="start-date" class="time-range-input">01-01</text>
+                        <select id="start-time" style="font-size: 18px;" class="pointer">
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                        </div>
+                        <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" style="visibility:hidden;" />
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">結束時間</div>
+                    <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
+                        <text id="end-date" class="time-range-input">02-01</text>
+                        <select id="end-time"  style="font-size: 18px;" class="pointer">
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                        </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">座位數</div>
+                    <div class="search-bottom">
+                        <select id="car-seat" class="form-control search-drop-down-list pointer" style="font-size: 18px;">
+                            <option value="">座位數</option>
+                            <option value="5">5 人以下</option>
+                            <option value="6">6 人以上</option>
+                            <option value="9">9 人款式</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 vertical-container">
+                    <button href="#" class="btn btn-default btn-featured btn-inverse btn-round search-btn" onclick="search()">
+                        <i class="fa fa-search btn-round"></i>
+                    </button>
+                     @* <button class="app-button"  href="#" onclick="search()">
+                         送出
+                    </button> *@
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div>
     </div>
     <div>
