@@ -29,6 +29,7 @@ namespace CarRental.Frontend.Controllers
         [HttpGet]
         public IActionResult Detail(string id)
         {
+            
             return View();
         }
     }

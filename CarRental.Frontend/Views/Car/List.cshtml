@@ -250,9 +250,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-7 col-sm-12"> 
+                
+                <div class="col-lg-7 col-md-7 col-sm-12" onclick="detail(@item.Id)"> 
                     <div class="row" style="width: 100%;">
-                        <div class="col-12"><h3 style="margin:0px;">@Html.ActionLink("不限廠牌小型車","Detail")</h3></div>
+                        <div class="col-12"><h3 style="margin:0px;">不限廠牌小型車</h3></div>
                         <div class="col-12">泓運租車</div>
                     </div>
                     <div class="row"  style="width: 100%;padding:0px 12px">
@@ -296,6 +297,11 @@
         });
     </script>
 
+    <script type="text/javascript" charset="utf-8">
+    function detail(id){
+     window.location.href = '@Url.Action("Detail", "Car")' + '?' + id;
+    }
+    </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }
