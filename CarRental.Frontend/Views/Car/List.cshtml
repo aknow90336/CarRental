@@ -295,13 +295,32 @@
                 });
             })
         });
-    </script>
 
-    <script type="text/javascript" charset="utf-8">
-    function detail(id){
-     window.location.href = '@Url.Action("Detail", "Car")' + '?' + id;
+        @* String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+        }; *@
+
+        function replaceAll(str, map){
+        for(key in map){
+            str = str.replaceAll(key, map[key]);
+        }
+        return str;
+        }
+
+        function detail(id){
+        var date = window.localStorage.getItem('date');
+        var map = {
+           '{' : '',
+           '}' : '',
+           ':' : '=',
+           '"' : '',
+           ',' : '&',
+           '-' : '/'
+        };
+        var result = replaceAll(date, map);
+        window.location.href = '@Url.Action("Detail", "Car")' + '?id=' + id +'&'+ result;
     }
-    </script>
-    
+    </script> 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }

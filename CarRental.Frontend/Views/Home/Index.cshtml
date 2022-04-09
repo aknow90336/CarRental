@@ -230,6 +230,16 @@
             var start = $('input[name="daterange"]').data('daterangepicker').startDate.format('YYYY-MM-DD')+' '+$("#start-time").val();
             var end = $('input[name="daterange"]').data('daterangepicker').endDate.format('YYYY-MM-DD')+' '+$("#end-time").val();
             var seat= $("#car-seat").val();
+            var datearray = {
+                StartDate : $("#start-date").html(),
+                EndDate : $("#end-date").html(),
+            };
+            if (typeof(Storage) !== "undefined") {
+                window.localStorage.setItem('date', JSON.stringify(datearray));
+            } else {
+                var message = "not working!"
+                window.localStorage.setItem('error',JSON.stringify(message));
+            }
             window.location.href = '@Url.Action("List", "Car")'+'?StartDateTime='+start+'&EndDateTime='+end + '&Seat=' + seat + '&Lat=' +lat+ '&Lng=' +lng;
         }
         $(document).ready(function() {
