@@ -29,5 +29,10 @@ namespace CarRental.DataAccess.DB.CarDB
         public DateTime? UpdatedTime { get; set; }
         public string Updator { get; set; }
         public bool? ValidFlag { get; set; }
+
+        public static implicit operator List<object>(Car v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

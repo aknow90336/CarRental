@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using CarRental.Frontend.Models;
 using CarRental.Service;
 using CarRental.Frontend.Models.Car;
+using CarRental.DataAccess.DB.CarDB;
+using System;
 
 namespace CarRental.Frontend.Controllers
 {
@@ -29,8 +31,13 @@ namespace CarRental.Frontend.Controllers
         [HttpGet]
         public IActionResult Detail(string id)
         {
-            
-            return View();
+            var context = new CarDBContext();
+            ulong val = Convert.ToUInt64(id);
+            var item = context.Cars.Find(val);
+            if(item != null){
+                return View(item);
+            }
+             return Content("Car not found"); 
         }
     }
 }

@@ -319,6 +319,7 @@
            '-' : '/'
         };
         var result = replaceAll(date, map);
+        window.localStorage.clear();
         window.location.href = '@Url.Action("Detail", "Car")' + '?id=' + id +'&'+ result;
     }
     </script> 
