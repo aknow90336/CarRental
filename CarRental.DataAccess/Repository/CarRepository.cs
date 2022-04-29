@@ -18,5 +18,10 @@ namespace CarRental.DataAccess.Repository
         {
             return this._dbContext.Cars.ToList();
         }
+
+        public List<Car> GetDetailResponseModel()
+        {
+            return this._dbContext.Cars.ToList();
+        }
     }
 }

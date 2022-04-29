@@ -29,5 +29,22 @@ namespace CarRental.Service.Impl
             
             return result;
         }
+
+        public List<CarDomain> GetDetailResponseModel()
+        {
+            List<CarDomain> result = new List<CarDomain>();
+            foreach(var item in this._carRepository.GetDetailResponseModel())
+            {
+                result.Add(new CarDomain(){
+                    Seat = item.Seat,
+                    DoorNum = item.DoorNum,
+                    CustomPrice = item.CustomPrice,
+                    NormalPrice = item.NormalPrice,
+                    HolidayPrice = item.HolidayPrice
+                });
+            }
+            return result;
+        }
+
     }
 }

@@ -6,5 +6,7 @@ namespace CarRental.DataAccess.Interface
     public interface ICarRepository
     {
         List<Car> GetCarList();
+
+        List<Car> GetDetailResponseModel();
     }
 }
