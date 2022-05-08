@@ -21,6 +21,7 @@ namespace CarRental.DataAccess.DB.CarDB
         public virtual DbSet<CarMake> CarMakes { get; set; }
         public virtual DbSet<CarModel> CarModels { get; set; }
         public virtual DbSet<Merchant> Merchants { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -288,6 +289,77 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasColumnType("time")
                     .HasColumnName("weekends_start")
                     .HasComment("週末_起始_營業時間");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("user");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CreatedTime)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("created_time")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.Creator)
+                    .HasMaxLength(128)
+                    .HasColumnName("creator")
+                    .UseCollation("utf8mb4_unicode_ci")
+                    .HasCharSet("utf8mb4");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(100)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.FirstName)
+                    .HasMaxLength(32)
+                    .HasColumnName("first_name")
+                    .UseCollation("utf8mb4_0900_ai_ci")
+                    .HasCharSet("utf8mb4");
+
+                entity.Property(e => e.LastName)
+                    .HasMaxLength(32)
+                    .HasColumnName("last_name")
+                    .UseCollation("utf8mb4_0900_ai_ci")
+                    .HasCharSet("utf8mb4");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(64)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(16)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.Status)
+                    .HasColumnName("status")
+                    .HasDefaultValueSql("'1'")
+                    .HasComment("狀態 (上架/下架)");
+
+                entity.Property(e => e.Token)
+                    .HasMaxLength(16)
+                    .HasColumnName("token")
+                    .HasDefaultValueSql("''");
+
+                entity.Property(e => e.UpdatedTime)
+                    .HasColumnType("timestamp")
+                    .HasColumnName("updated_time")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.Updator)
+                    .HasMaxLength(128)
+                    .HasColumnName("updator")
+                    .UseCollation("utf8mb4_unicode_ci")
+                    .HasCharSet("utf8mb4");
+
+                entity.Property(e => e.ValidFlag)
+                    .IsRequired()
+                    .HasColumnName("valid_flag")
+                    .HasDefaultValueSql("'1'");
             });
 
             OnModelCreatingPartial(modelBuilder);

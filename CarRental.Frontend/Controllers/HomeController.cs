@@ -15,15 +15,17 @@ namespace CarRental.Frontend.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
-            _logger = logger;
+            this._logger = logger;
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> Login(LoginModel model)
+        {
+
+            return null;
         }
 
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
