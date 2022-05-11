@@ -1,1 +1,72 @@
-﻿5511
+﻿@model UserCheckModel
+
+@if(this.Model.IsUser)
+{
+
+    <div class="box-title mb-30">
+        <h2 class="fs-20">請輸入密碼</h2>
+    </div>
+    <form id="postForm" class="sky-form" method="post" autocomplete="off">
+        <div class="clearfix">
+            <label>帳號</label>
+            <label class="input mb-10">
+                <i class="ico-append fa fa-mobile"></i>
+                <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled>
+                <b class="tooltip tooltip-bottom-right">請輸入您的登入帳號</b>
+            </label>
+        </div>
+        <div class="clearfix">
+            <label>密碼</label>
+            <label class="input mb-10">
+                <i class="ico-append fa fa-lock"></i>
+                <input id="Pwd" name="Pwd" required="true" autofocus>
+                <b class="tooltip tooltip-bottom-right">請輸入您的密碼</b>
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-6"></div>
+            <div class="col-md-6 col-sm-6 col-6 text-right">
+                <button class="btn btn-primary" type="button" onclick="isUser()"> 登入 </button>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div class="box-title mb-30">
+        <h2 class="fs-20">帳號註冊</h2>
+    </div>
+    <form id="postForm" class="sky-form" method="post" autocomplete="off">
+        <div class="clearfix">
+            <label>姓名 (請務必輸入真實姓名)</label>
+            <label class="input mb-10">
+                <input id="Name" name="Name"  autofocus>
+            </label>
+        </div>
+        <div class="clearfix">
+            <label>帳號</label>
+            <label class="input mb-10">
+                <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled>
+            </label>
+        </div>
+        <div class="clearfix">
+            <label>密碼</label>
+            <label class="input mb-10">
+                <input id="Pwd" name="Pwd" required="true" autofocus>
+            </label>
+        </div>
+        <div class="clearfix">
+            <label>確認密碼</label>
+            <label class="input mb-10">
+                <input id="Pwd-Check" name="Pwd-Check" required="true"  autofocus>
+            </label>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-6"></div>
+            <div class="col-md-6 col-sm-6 col-6 text-right">
+                <button class="btn btn-primary" type="button" onclick="isUser()"> 驗證 </button>
+            </div>
+        </div>
+    </form>
+}
+ 

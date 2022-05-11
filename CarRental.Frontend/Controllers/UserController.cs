@@ -5,6 +5,9 @@ using CarRental.Service;
 using CarRental.Service.Lib;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace CarRental.Frontend.Controllers
 {
@@ -29,8 +32,9 @@ namespace CarRental.Frontend.Controllers
         [HttpPost]
         public IActionResult IsUser(UserCheckModel model)
         {
-            return Ok(Result.GetResult(base.RenderPartialViewToString(this._compositeViewEngine,"LoginPartial", null)));
-            // return Ok(Result.GetResult(true));
+            Dictionary<ReturnKey, object> result = new Dictionary<ReturnKey, object>();
+            result.Add(ReturnKey.Result, base.RenderPartialViewToString(this._compositeViewEngine,"LoginPartial", model));
+            return this.Content(JsonSerializer.Serialize(result));
         }
 
         [HttpPost]
