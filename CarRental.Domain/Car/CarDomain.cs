@@ -1,8 +1,10 @@
+using System;
+
 namespace CarRental.Domain.Car
 {
     public class CarDomain
     {
-        public bool id;
+        public int id;
 
         public sbyte DoorNum { get; set; }
         
@@ -23,5 +25,6 @@ namespace CarRental.Domain.Car
         public decimal? WeekendsPrice { get; set; }
 
         public decimal? HolidayPrice { get; set; }
+        
     }
 }

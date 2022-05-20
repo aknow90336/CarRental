@@ -30,21 +30,46 @@ namespace CarRental.Service.Impl
             return result;
         }
 
-        public List<CarDomain> GetDetailResponseModel()
+        public MerchantDomain GetMerechantDetailById(ulong id)
         {
-            List<CarDomain> result = new List<CarDomain>();
-            foreach(var item in this._carRepository.GetDetailResponseModel())
-            {
-                result.Add(new CarDomain(){
-                    Seat = item.Seat,
-                    DoorNum = item.DoorNum,
-                    CustomPrice = item.CustomPrice,
-                    NormalPrice = item.NormalPrice,
-                    HolidayPrice = item.HolidayPrice
-                });
-            }
+            var merchant = this._carRepository.GetMerechantDetailById(id);
+            var result = new MerchantDomain(){
+            Id = merchant.Id,
+            Name = merchant.Name,
+            TaxId = merchant.TaxId,
+            ManagerName = merchant.ManagerName,
+            ManagerPhone = merchant.ManagerPhone,
+            Tel = merchant.Tel,
+            Mail = merchant.Mail,
+            LocationCity = merchant.LocationCity,
+            LocationArea = merchant.LocationArea,
+            LocationAddr = merchant.LocationAddr,
+            LocationLat = merchant.LocationLat,
+            LocationLon = merchant.LocationLon,
+            NormalStart = merchant.NormalStart,
+            NormalEnd = merchant.NormalEnd,
+            WeekendsStart = merchant.WeekendsStart,
+            WeekendsEnd = merchant.WeekendsEnd
+            };
+
             return result;
         }
-
+            
+        public CarDomain GetCarDetailById(ulong id)
+        {
+           var car = this._carRepository.GetCarDetailById(id);
+           CarDomain result = new CarDomain(){
+           Seat = car.Seat,
+           DoorNum = car.DoorNum,
+           CustomPrice = car.CustomPrice,
+           NormalPrice = car.NormalPrice,
+           HolidayPrice = car.HolidayPrice,
+           FridayPrice  = car.FridayPrice,
+           WeekendsPrice = car.WeekendsPrice,
+           TransmissionType = car.TransmissionType,
+           InsuranceType = car.InsuranceType
+           };  
+           return result;
+        }
     }
 }

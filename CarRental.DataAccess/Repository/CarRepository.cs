@@ -19,9 +19,14 @@ namespace CarRental.DataAccess.Repository
             return this._dbContext.Cars.ToList();
         }
 
-        public List<Car> GetDetailResponseModel()
+        public Car GetCarDetailById(ulong id)
         {
-            return this._dbContext.Cars.ToList();
+            return this._dbContext.Cars.Where(i => i.Id == id).FirstOrDefault();
+        }
+
+        public Merchant GetMerechantDetailById(ulong id)
+        {
+            return this._dbContext.Merchants.Where(i => i.Id == id).FirstOrDefault();
         }
     }
 }

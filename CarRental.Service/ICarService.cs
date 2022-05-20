@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CarRental.Domain.Car;
 
@@ -6,8 +5,10 @@ namespace CarRental.Service
 {
     public interface ICarService
     {
-        List<CarDomain> GetCarList();
+        public List<CarDomain> GetCarList();
 
-        List<CarDomain> GetDetailResponseModel();
+        public CarDomain GetCarDetailById(ulong id);
+
+        public MerchantDomain GetMerechantDetailById(ulong id);
     }
 }

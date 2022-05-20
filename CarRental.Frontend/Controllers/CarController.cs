@@ -3,8 +3,6 @@ using Microsoft.Extensions.Logging;
 using CarRental.Frontend.Models;
 using CarRental.Service;
 using CarRental.Frontend.Models.Car;
-using System;
-using System.Linq;
 
 namespace CarRental.Frontend.Controllers
 {
@@ -29,11 +27,13 @@ namespace CarRental.Frontend.Controllers
         }
 
         [HttpGet]
-        public IActionResult Detail(int id)
+        public IActionResult Detail(ulong id)
         {
-            var item = this._carService.GetDetailResponseModel();
-            var getResultById = item.FirstOrDefault(i => i.id);
-            return View(getResultById);
+            var result = new CarDetailResponseModel(){
+                Car = this._carService.GetCarDetailById(id),
+                Mercnaht = this._carService.GetMerechantDetailById(id)
+            };
+            return View(result);
         }
     }
 }

@@ -5,8 +5,10 @@ namespace CarRental.DataAccess.Interface
 {
     public interface ICarRepository
     {
-        List<Car> GetCarList();
+        public List<Car> GetCarList();
 
-        List<Car> GetDetailResponseModel();
+        public Car GetCarDetailById(ulong id);
+
+        public Merchant GetMerechantDetailById(ulong id);
     }
 }
