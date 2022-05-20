@@ -15,6 +15,7 @@ using CarRental.DataAccess.Interface;
 using CarRental.DataAccess.Repository;
 using CarRental.Service;
 using CarRental.Service.Impl;
+using CarRental.Frontend.Middleware;
 
 namespace CarRental.Frontend
 {
@@ -68,6 +69,8 @@ namespace CarRental.Frontend
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
 

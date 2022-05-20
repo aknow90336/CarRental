@@ -8,18 +8,18 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6 offset-md-3 offset-sm-3">
                     <div id="error" class="alert alert-mini alert-danger mb-30" style="display: none;">
-                        <strong>登錄失敗</strong> <text>密碼錯誤</text>
+                        <strong>操作失敗</strong> <text></text>
                     </div> 
                     <div id="login-section" class="box-static box-transparent box-bordered p-30">
                         <div class="box-title mb-30">
                             <h2 class="fs-20">您的手機號碼就是登入帳號</h2>
                         </div>
-                        <form id="postForm" class="sky-form" method="post" action="/Home/Login" autocomplete="off">
+                        <form id="postForm" class="sky-form" method="post" autocomplete="off">
                             <div class="clearfix">
                                 <label>帳號</label>
                                 <label class="input mb-10">
                                     <i class="ico-append fa fa-mobile"></i>
-                                    <input id="Phone" name="Phone" required="true" type="phone">
+                                    <input id="Phone" name="Phone" required="true" type="phone" value="0986810117" maxlength="10">
                                     <b class="tooltip tooltip-bottom-right">請輸入您的登入帳號</b>
                                 </label>
                             </div>
@@ -59,19 +59,15 @@
         });
 
         function isUser() {
-            var MobileReg = /^(09)[0-9]{8}$/;
+            var mobileReg = /^(09)[0-9]{8}$/;
             $("#error").hide();
             if($("#Phone").val()=='')
             {
-                $("#error").show();
-                $("#error text").html('請輸入帳號');
-                return;
+                showError('請輸入帳號');
             }
-            if(!$("#Phone").val().match(MobileReg))
+            if(!$("#Phone").val().match(mobileReg))
             {
-                $("#error").show();
-                $("#error text").html('手機格式不正確');
-                return;
+                showError('手機格式不正確');
             }
             var formData = new FormData($("#postForm")[0]);
             $.ajax({
@@ -82,14 +78,20 @@
                 contentType: false,
                 dataType: "json",
                 success: function (data, textStatus, jqXHR) {
-                    if (!data.IsError) {
-                        $("#login-section").html(data.Result);
-                    }
+                    $("#login-section").html(data.Result);
                 },
                 error: function (data, textStatus) {
-                    alert('fuck');
+                    var err = JSON.parse(data.responseText);
+                    showError(err.message);
                 },
             })
+        }
+
+        function showError(message)
+        {
+            $("#error").show();
+            $("#error text").html(message);
+            throw new Error(message);
         }
     </script>
 }

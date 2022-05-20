@@ -36,37 +36,68 @@ else
     <div class="box-title mb-30">
         <h2 class="fs-20">帳號註冊</h2>
     </div>
-    <form id="postForm" class="sky-form" method="post" autocomplete="off">
-        <div class="clearfix">
-            <label>姓名 (請務必輸入真實姓名)</label>
-            <label class="input mb-10">
-                <input id="Name" name="Name"  autofocus>
-            </label>
-        </div>
-        <div class="clearfix">
-            <label>帳號</label>
-            <label class="input mb-10">
-                <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled>
-            </label>
-        </div>
-        <div class="clearfix">
-            <label>密碼</label>
-            <label class="input mb-10">
-                <input id="Pwd" name="Pwd" required="true" autofocus>
-            </label>
-        </div>
-        <div class="clearfix">
-            <label>確認密碼</label>
-            <label class="input mb-10">
-                <input id="Pwd-Check" name="Pwd-Check" required="true"  autofocus>
-            </label>
+    <form id="postForm" class="sky-form" method="post">
+        <label>姓名</label>
+        <label class="input mb-10">
+            <input id="Name" type="text" name="Name" placeholder="請務必輸入真實姓名" autocomplete="nope" autofocus maxlength="4">
+        </label>
+        <label>帳號</label>
+        <label class="input mb-10">
+            <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled style="background-color: #EEEEEE;">
+        </label>
+        <label>密碼</label>
+        <div class="row mb-10">
+            <div class="col-md-6">
+                <label class="input">
+                    <input id="Pwd" type="password" placeholder="請輸入密碼" autocomplete="off">
+                </label>
+            </div>
+            <div class="col col-md-6">
+                <label class="input">
+                    <input id="Pwd-Check" type="password" placeholder="確認密碼">
+                </label>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6"></div>
             <div class="col-md-6 col-sm-6 col-6 text-right">
-                <button class="btn btn-primary" type="button" onclick="isUser()"> 驗證 </button>
+                <button class="btn btn-primary" type="button" onclick="register()"> 註冊 </button>
             </div>
         </div>
     </form>
 }
  
+<script type="text/javascript" charset="utf-8">
+    function register()
+    {
+        $("#error").hide();
+        if($("#Pwd").val() != $("#Pwd-Check").val())
+        {
+            showError('密碼不相符');
+        }
+        if($("#Name").val()=='')
+        {
+            showError('請輸入姓名');
+        }
+        if($("#Pwd").val()=='')
+        {
+            showError('請輸入密碼');
+        }
+        var formData = new FormData($("#postForm")[0]);
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Register","User")",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                alert(666);
+            },
+            error: function (data, textStatus) {
+                var err = JSON.parse(data.responseText);
+                showError(err.message);
+            },
+        })
+    }
+</script>

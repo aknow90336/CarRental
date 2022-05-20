@@ -17,5 +17,11 @@ namespace CarRental.DataAccess.Repository
         {
             return this._dbContext.Users.Where(t=>t.Phone == phone).FirstOrDefault();
         }
+
+        public void AddUser(User user)
+        {
+            this._dbContext.Users.Add(user);
+            this._dbContext.SaveChanges();
+        }
     }
 }

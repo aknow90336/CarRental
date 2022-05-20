@@ -28,7 +28,7 @@ namespace CarRental.DataAccess.DB.CarDB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=54.95.104.25;port=3306;database=car;user=root;password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.28-mysql"));
+                optionsBuilder.UseMySql("server=54.95.104.25;port=3306;database=car;user=root;password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
             }
         }
 
@@ -276,7 +276,6 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasColumnName("updator");
 
                 entity.Property(e => e.ValidFlag)
-                    .IsRequired()
                     .HasColumnName("valid_flag")
                     .HasDefaultValueSql("'1'");
 
@@ -295,7 +294,7 @@ namespace CarRental.DataAccess.DB.CarDB
             {
                 entity.ToTable("user");
 
-                entity.HasCharSet("utf8")
+                entity.HasCharSet("utf8mb3")
                     .UseCollation("utf8_general_ci");
 
                 entity.Property(e => e.Id).HasColumnName("id");
@@ -315,15 +314,9 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasMaxLength(100)
                     .HasColumnName("email");
 
-                entity.Property(e => e.FirstName)
+                entity.Property(e => e.Name)
                     .HasMaxLength(32)
-                    .HasColumnName("first_name")
-                    .UseCollation("utf8mb4_0900_ai_ci")
-                    .HasCharSet("utf8mb4");
-
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(32)
-                    .HasColumnName("last_name")
+                    .HasColumnName("name")
                     .UseCollation("utf8mb4_0900_ai_ci")
                     .HasCharSet("utf8mb4");
 
@@ -334,16 +327,6 @@ namespace CarRental.DataAccess.DB.CarDB
                 entity.Property(e => e.Phone)
                     .HasMaxLength(16)
                     .HasColumnName("phone");
-
-                entity.Property(e => e.Status)
-                    .HasColumnName("status")
-                    .HasDefaultValueSql("'1'")
-                    .HasComment("狀態 (上架/下架)");
-
-                entity.Property(e => e.Token)
-                    .HasMaxLength(16)
-                    .HasColumnName("token")
-                    .HasDefaultValueSql("''");
 
                 entity.Property(e => e.UpdatedTime)
                     .HasColumnType("timestamp")
