@@ -1,0 +1,22 @@
+{
+    "GCP-ProjectId": "carrental-prod",
+    "AESKey":"ff28ffbd59d243eabeb739482f23fd9d",
+    "ConnectionStrings": {
+      "Connection": "server=172.20.80.3;port=3306;user=root;password=w1D6SLdaEK;database=angel;charset=utf8mb4"
+    },
+    "CarURL": "https://officialqa.angelsctek.com",
+    "Neweb":{
+      "URL" : "https://ccore.newebpay.com",
+      "MerchantId" : "AJL27620307",
+      "MerchantHashKey" : "PpfsjmAT9dpoAd0SbPvbg7MHS4ORIEhl",
+      "MerchantIV" : "CXsZQ8Td0gOHO14P"
+    },
+    "SMS":{
+      "Mitake" : {
+        "Url": "https://smsapi.mitake.com.tw",
+        "Act": "91421326",
+        "Pwd": "!Abc12345!"
+      }
+    }
+  }
+  

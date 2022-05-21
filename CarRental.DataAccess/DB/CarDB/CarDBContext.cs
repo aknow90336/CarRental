@@ -21,6 +21,7 @@ namespace CarRental.DataAccess.DB.CarDB
         public virtual DbSet<CarMake> CarMakes { get; set; }
         public virtual DbSet<CarModel> CarModels { get; set; }
         public virtual DbSet<Merchant> Merchants { get; set; }
+        public virtual DbSet<SmsLog> SmsLogs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -288,6 +289,66 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasColumnType("time")
                     .HasColumnName("weekends_start")
                     .HasComment("週末_起始_營業時間");
+            });
+
+            modelBuilder.Entity<SmsLog>(entity =>
+            {
+                entity.ToTable("sms_log");
+
+                entity.HasCharSet("utf8mb3")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Act)
+                    .HasMaxLength(64)
+                    .HasColumnName("act");
+
+                entity.Property(e => e.CreateTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_time");
+
+                entity.Property(e => e.DestName)
+                    .HasMaxLength(16)
+                    .HasColumnName("dest_name");
+
+                entity.Property(e => e.DlvTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("dlv_time");
+
+                entity.Property(e => e.DoneTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("done_time");
+
+                entity.Property(e => e.DstAddr)
+                    .HasMaxLength(10)
+                    .HasColumnName("dst_addr");
+
+                entity.Property(e => e.IsDlv).HasColumnName("is_dlv");
+
+                entity.Property(e => e.IsSend).HasColumnName("is_send");
+
+                entity.Property(e => e.Message)
+                    .HasMaxLength(256)
+                    .HasColumnName("message");
+
+                entity.Property(e => e.MsgId)
+                    .HasMaxLength(16)
+                    .HasColumnName("msg_id");
+
+                entity.Property(e => e.Note)
+                    .HasMaxLength(256)
+                    .HasColumnName("note");
+
+                entity.Property(e => e.SendTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("send_time");
+
+                entity.Property(e => e.StatusFlag).HasColumnName("status_flag");
+
+                entity.Property(e => e.UpdatedTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_time");
             });
 
             modelBuilder.Entity<User>(entity =>

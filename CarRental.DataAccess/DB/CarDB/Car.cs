@@ -19,7 +19,6 @@ namespace CarRental.DataAccess.DB.CarDB
         public DateTime? PlateDate { get; set; }
         public sbyte? InsuranceType { get; set; }
         public decimal? NormalPrice { get; set; }
-
         public decimal? FridayPrice { get; set; }
         public decimal? WeekendsPrice { get; set; }
         public decimal? HolidayPrice { get; set; }

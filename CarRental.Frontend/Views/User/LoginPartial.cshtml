@@ -7,22 +7,18 @@
         <h2 class="fs-20">請輸入密碼</h2>
     </div>
     <form id="postForm" class="sky-form" method="post" autocomplete="off">
-        <div class="clearfix">
-            <label>帳號</label>
-            <label class="input mb-10">
-                <i class="ico-append fa fa-mobile"></i>
-                <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled>
-                <b class="tooltip tooltip-bottom-right">請輸入您的登入帳號</b>
-            </label>
-        </div>
-        <div class="clearfix">
-            <label>密碼</label>
-            <label class="input mb-10">
-                <i class="ico-append fa fa-lock"></i>
-                <input id="Pwd" name="Pwd" required="true" autofocus>
-                <b class="tooltip tooltip-bottom-right">請輸入您的密碼</b>
-            </label>
-        </div>
+        <label>帳號</label>
+        <label class="input mb-10">
+            <i class="ico-append fa fa-mobile"></i>
+            <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled>
+            <b class="tooltip tooltip-bottom-right">請輸入您的登入帳號</b>
+        </label>
+        <label>密碼</label>
+        <label class="input mb-10">
+            <i class="ico-append fa fa-lock"></i>
+            <input id="Pwd" name="Pwd" required="true" autofocus>
+            <b class="tooltip tooltip-bottom-right">請輸入您的密碼</b>
+        </label>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6"></div>
             <div class="col-md-6 col-sm-6 col-6 text-right">
@@ -37,19 +33,20 @@ else
         <h2 class="fs-20">帳號註冊</h2>
     </div>
     <form id="postForm" class="sky-form" method="post">
+        @Html.HiddenFor(m => m.Phone)
         <label>姓名</label>
         <label class="input mb-10">
             <input id="Name" type="text" name="Name" placeholder="請務必輸入真實姓名" autocomplete="nope" autofocus maxlength="4">
         </label>
         <label>帳號</label>
         <label class="input mb-10">
-            <input id="Phone" name="Phone" required="true" type="phone" value="@this.Model.Phone" disabled style="background-color: #EEEEEE;">
+            <input required="true" type="phone" value="@this.Model.Phone" disabled style="background-color: #EEEEEE;">
         </label>
         <label>密碼</label>
         <div class="row mb-10">
             <div class="col-md-6">
                 <label class="input">
-                    <input id="Pwd" type="password" placeholder="請輸入密碼" autocomplete="off">
+                    <input id="Pwd" name="Pwd" type="password" placeholder="請輸入密碼" autocomplete="off">
                 </label>
             </div>
             <div class="col col-md-6">
@@ -92,7 +89,7 @@ else
             contentType: false,
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
-                alert(666);
+                window.location.href = '@Url.Action("phone", "verify")';
             },
             error: function (data, textStatus) {
                 var err = JSON.parse(data.responseText);

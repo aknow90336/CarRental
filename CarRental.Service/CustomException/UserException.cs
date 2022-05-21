@@ -13,6 +13,6 @@ namespace CarRental.Service.CustomException
     }
     public enum UserExceptionCode
     {
-        Test = 1,
+        ParameterError = 1,
     }
 }

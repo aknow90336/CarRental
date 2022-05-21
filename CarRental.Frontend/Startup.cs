@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CarRental.DataAccess.DB.CarDB;
 using Microsoft.EntityFrameworkCore;
-using CarRental.DataAccess.Interface;
-using CarRental.DataAccess.Repository;
-using CarRental.Service;
-using CarRental.Service.Impl;
 using CarRental.Frontend.Middleware;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using CarRental.Frontend.Lib;
+using AutoMapper;
 
 namespace CarRental.Frontend
 {
@@ -31,7 +29,6 @@ namespace CarRental.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             #region Automatically resolve all dependencies
-
             Assembly.Load("CarRental.DataAccess");
             Assembly.Load("CarRental.Service");
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("CarRental.Service") || x.FullName.Contains("CarRental.DataAccess"));
@@ -46,12 +43,25 @@ namespace CarRental.Frontend
                     }
                 }
             }
-
             #endregion
-            // services.AddScoped<ICarRepository, CarRepository>();
-            // services.AddScoped<ICarService, CarService>();
+            #region AutoMap 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            #endregion
+
             services.AddDbContext<CarDBContext>(options => options.UseMySql("server=54.95.104.25;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
             services.AddControllersWithViews(x=>x.SuppressAsyncSuffixInActionNames = false).AddRazorRuntimeCompilation();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>{
+                option.Cookie.HttpOnly = true;
+                option.LoginPath = new PathString("/User/Login");
+                option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+            });      
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -73,6 +83,10 @@ namespace CarRental.Frontend
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

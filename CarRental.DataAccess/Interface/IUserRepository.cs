@@ -6,6 +6,6 @@ namespace CarRental.DataAccess.Interface
     {
         public User GetUserByPhone(string phone);
 
-        void AddUser(User user);
+        uint AddUser(User user);
     }
 }

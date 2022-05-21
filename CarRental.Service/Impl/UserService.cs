@@ -1,6 +1,10 @@
+using System;
+using System.Security.Cryptography;
+using System.Text;
 using CarRental.DataAccess.Interface;
 using CarRental.DataAccess.DB.CarDB;
 using CarRental.Service.CustomException;
+
 
 namespace CarRental.Service.Impl
 {
@@ -20,22 +24,33 @@ namespace CarRental.Service.Impl
             return user != null;
         }
 
-        public void AddUser(string name, string phone, string pwd)
+        public uint AddUser(string name, string phone, string pwd)
         {
             if(string.IsNullOrEmpty(name)||string.IsNullOrEmpty(phone)||string.IsNullOrEmpty(pwd))
             {
-                throw new UserException(UserExceptionCode.Test, "invalid invitation.");
+                throw new UserException(UserExceptionCode.ParameterError, "invalid loging parameter.");
             }
 
-            this._userRepository.AddUser(new User()
+            return this._userRepository.AddUser(new User()
             {
-                
+                Name = name,
+                Phone = phone,
+                Password = this.Hash(pwd)
             });
         }
 
         public void Login(string phone, string password)
         {
             //var user = this._userRepository.GetUserByPhone(phone);
+        }
+
+        public string Hash(string password)
+        {
+            using (SHA256CryptoServiceProvider csp = new SHA256CryptoServiceProvider())
+            {
+                var salt = "salt";
+                return BitConverter.ToString(csp.ComputeHash(Encoding.UTF8.GetBytes(salt+password))).Replace("-", string.Empty).ToLower();
+            }
         }
     }
 }
