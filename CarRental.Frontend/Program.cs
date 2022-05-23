@@ -14,8 +14,7 @@ namespace CarRental.Frontend
                 .AddCommandLine(args)
                 .AddEnvironmentVariables();
 
-            var envConfig = Path.Combine(Directory.GetCurrentDirectory(), "Config", $"prod.json");
-
+            configurationBuilder.AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "Config", "prod.json"));
             var configuration = configurationBuilder.Build();
 
             CreateHostBuilder(args, configuration).Build().Run();

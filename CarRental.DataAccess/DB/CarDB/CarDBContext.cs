@@ -23,6 +23,7 @@ namespace CarRental.DataAccess.DB.CarDB
         public virtual DbSet<Merchant> Merchants { get; set; }
         public virtual DbSet<SmsLog> SmsLogs { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Verify> Verifies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -405,6 +406,11 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasMaxLength(100)
                     .HasColumnName("email");
 
+                entity.Property(e => e.IsPhoneVerify)
+                    .IsRequired()
+                    .HasColumnName("is_phone_verify")
+                    .HasDefaultValueSql("'1'");
+
                 entity.Property(e => e.Name)
                     .HasMaxLength(32)
                     .HasColumnName("name");
@@ -430,6 +436,40 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasColumnType("bit(1)")
                     .HasColumnName("valid_flag")
                     .HasDefaultValueSql("b'1'");
+            });
+
+            modelBuilder.Entity<Verify>(entity =>
+            {
+                entity.ToTable("verify");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11) unsigned")
+                    .HasColumnName("id");
+
+                entity.Property(e => e.Code)
+                    .HasMaxLength(16)
+                    .HasColumnName("code");
+
+                entity.Property(e => e.CreatedTime)
+                    .HasColumnType("timestamp")
+                    .ValueGeneratedOnAddOrUpdate()
+                    .HasColumnName("created_time")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.MerchantId)
+                    .HasMaxLength(20)
+                    .HasColumnName("merchant_id");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(16)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.Status)
+                    .HasColumnType("int(4)")
+                    .HasColumnName("status");
             });
 
             OnModelCreatingPartial(modelBuilder);

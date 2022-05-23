@@ -12,6 +12,7 @@ namespace CarRental.DataAccess.DB.CarDB
         public string Phone { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public bool? IsPhoneVerify { get; set; }
         public DateTime? CreatedTime { get; set; }
         public string Creator { get; set; }
         public DateTime? UpdatedTime { get; set; }

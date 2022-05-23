@@ -4,23 +4,30 @@ using System.Text;
 using CarRental.DataAccess.Interface;
 using CarRental.DataAccess.DB.CarDB;
 using CarRental.Service.CustomException;
-
-
+using CarRental.Domain.User;
+using AutoMapper;
 namespace CarRental.Service.Impl
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService(ICarRepository carRepository, IUserRepository userRepository)
+        private IMapper _mapper;
+
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
+            this._mapper = mapper;
             this._userRepository = userRepository;
+        }
+
+        public UserDomain GetUser(string phone)
+        {
+            return this._mapper.Map<UserDomain>(this._userRepository.GetUserByPhone(phone));
         }
 
         public bool IsUser(string phone)
         {
             var user = this._userRepository.GetUserByPhone(phone);
-
             return user != null;
         }
 
@@ -37,11 +44,6 @@ namespace CarRental.Service.Impl
                 Phone = phone,
                 Password = this.Hash(pwd)
             });
-        }
-
-        public void Login(string phone, string password)
-        {
-            //var user = this._userRepository.GetUserByPhone(phone);
         }
 
         public string Hash(string password)

@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using CarRental.Frontend.Models;
 using CarRental.Service;
+using System.Text;
+using System.Security.Cryptography;
+using System;
 
 namespace CarRental.Frontend.Controllers
 {
@@ -13,18 +16,19 @@ namespace CarRental.Frontend.Controllers
     {
         private readonly ILogger<VerifyController> _logger;
 
-        private readonly ISMSService _smsService;
+        private readonly IVerifyService _verifyService;
 
-        public VerifyController(ILogger<VerifyController> logger)
+        public VerifyController(ILogger<VerifyController> logger,
+                                IVerifyService verifyService)
         {
-            //this._smsService = smsService;
+            this._verifyService = verifyService;
             this._logger = logger;
         }
         
         [HttpGet]
         public IActionResult Phone()
         {
-            //this._smsService.SendLongSMS("活動邀請", "SYSTEM", "0986810117", $"您好這是測試");
+            // todo 檢查使用者是否驗證成功
             return View(new VerifyPhoneModel(){
                 Phone = User.FindFirst("Phone").Value
             });
@@ -34,15 +38,16 @@ namespace CarRental.Frontend.Controllers
         public IActionResult Resend(VerifyPhoneModel model)
         {
             Dictionary<ReturnKey, object> result = new Dictionary<ReturnKey, object>();
-            
+            // todo 檢查使用者是否驗證成功
+            this._verifyService.VerifySend(User.FindFirst("Phone").Value);
             return this.Content(JsonSerializer.Serialize(result));
         }
 
         [HttpPost]
-        public IActionResult Phone(UserCheckModel model)
+        public IActionResult VerifyPhone(UserCheckModel model)
         {
             Dictionary<ReturnKey, object> result = new Dictionary<ReturnKey, object>();
-
+            this._verifyService.VerifyPhone(Convert.ToUInt16(User.FindFirst("UserId").Value), model.Code);
             return this.Content(JsonSerializer.Serialize(result));
         }
     }

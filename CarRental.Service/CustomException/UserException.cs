@@ -14,5 +14,7 @@ namespace CarRental.Service.CustomException
     public enum UserExceptionCode
     {
         ParameterError = 1,
+        UserNotFound = 2,
+        PwdError = 3,
     }
 }

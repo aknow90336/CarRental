@@ -5,5 +5,7 @@ namespace CarRental.Frontend.Models
         public string Phone { get; set; }
 
         public bool IsUser { get; set; }
+
+        public string Code  { get; set; }
     }
 }

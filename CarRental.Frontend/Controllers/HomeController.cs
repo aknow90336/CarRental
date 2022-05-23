@@ -18,13 +18,6 @@ namespace CarRental.Frontend.Controllers
             this._logger = logger;
         }
         
-        [HttpPost]
-        public async Task<ActionResult> Login(LoginModel model)
-        {
-
-            return null;
-        }
-
         public IActionResult Index()
         {
             return View();

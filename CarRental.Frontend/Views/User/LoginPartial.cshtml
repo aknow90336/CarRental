@@ -7,6 +7,7 @@
         <h2 class="fs-20">請輸入密碼</h2>
     </div>
     <form id="postForm" class="sky-form" method="post" autocomplete="off">
+        @Html.HiddenFor(m => m.Phone)
         <label>帳號</label>
         <label class="input mb-10">
             <i class="ico-append fa fa-mobile"></i>
@@ -16,13 +17,13 @@
         <label>密碼</label>
         <label class="input mb-10">
             <i class="ico-append fa fa-lock"></i>
-            <input id="Pwd" name="Pwd" required="true" autofocus>
+            <input id="Pwd" name="Pwd" type="password" required="true" autofocus>
             <b class="tooltip tooltip-bottom-right">請輸入您的密碼</b>
         </label>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-6"></div>
             <div class="col-md-6 col-sm-6 col-6 text-right">
-                <button class="btn btn-primary" type="button" onclick="isUser()"> 登入 </button>
+                <button class="btn btn-primary" type="button" onclick="login()"> 登入 </button>
             </div>
         </div>
     </form>
@@ -90,6 +91,27 @@ else
             dataType: "json",
             success: function (data, textStatus, jqXHR) {
                 window.location.href = '@Url.Action("phone", "verify")';
+            },
+            error: function (data, textStatus) {
+                var err = JSON.parse(data.responseText);
+                showError(err.message);
+            },
+        })
+    }
+
+    function login()
+    {
+        $("#error").hide();
+        var formData = new FormData($("#postForm")[0]);
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Login","User")",
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+                window.location.href = '@Url.Action("index", "home")';
             },
             error: function (data, textStatus) {
                 var err = JSON.parse(data.responseText);

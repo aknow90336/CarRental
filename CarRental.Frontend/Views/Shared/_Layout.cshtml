@@ -31,50 +31,36 @@
                         <ul id="topMain" class="nav nav-pills nav-main">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="#" style="color: #666666;">
-                                    XXX 您好
+                                    個人資訊
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#">
-                                            HOME CORPORATE
+                                        <a class="dropdown-toggle"  href="@Url.Action("Detail","User")">
+                                            個人資訊
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="index-corporate-1.html">CORPORATE LAYOUT 1</a></li>
-                                            <li><a href="index-corporate-2.html">CORPORATE LAYOUT 2</a></li>
-                                            <li><a href="index-corporate-3.html">CORPORATE LAYOUT 3</a></li>
-                                            <li><a href="index-corporate-4.html">CORPORATE LAYOUT 4</a></li>
-                                            <li><a href="index-corporate-5.html">CORPORATE LAYOUT 5</a></li>
-                                            <li><a href="index-corporate-6.html">CORPORATE LAYOUT 6</a></li>
-                                            <li><a href="index-corporate-7.html">CORPORATE LAYOUT 7</a></li>
-                                        </ul>
                                     </li>
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" href="#">
-                                            HOME PORTFOLIO
+                                            歷史交易資訊
                                         </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="index-portfolio-1.html">PORTFOLIO LAYOUT 1</a></li>
-                                            <li><a href="index-portfolio-2.html">PORTFOLIO LAYOUT 2</a></li>
-                                            <li><a href="index-portfolio-masonry.html">PORTFOLIO MASONRY</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" href="#">
-                                            HOME BLOG
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="index-blog-1.html">BLOG LAYOUT 1</a></li>
-                                            <li><a href="index-blog-2.html">BLOG LAYOUT 2</a></li>
-                                            <li><a href="index-blog-3.html">BLOG LAYOUT 3</a></li>
-                                            <li><a href="index-blog-4.html">BLOG LAYOUT 4</a></li>
-                                        </ul>
                                     </li>
                                 </ul>
                             </li>
                             <li >
-                                <a href="@Url.Action("login","user")" style="color: #666666;">
-                                    登入
-                                </a>
+                                @{
+                                    if(User.FindFirst("Phone") == null)
+                                    {
+                                        <a href="@Url.Action("Login","User")" style="color: #666666;">
+                                            登入
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Logout","User")" style="color: #666666;">
+                                            登出
+                                        </a>
+                                    }
+                                }
                             </li>
                         </ul>
                     </nav>

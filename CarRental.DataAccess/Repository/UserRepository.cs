@@ -13,6 +13,11 @@ namespace CarRental.DataAccess.Repository
             this._dbContext = carDBContext;
         }
 
+        public User GetUser(uint id)
+        {
+            return this._dbContext.Users.Where(t=>t.Id == id).FirstOrDefault();
+        }
+
         public User GetUserByPhone(string phone)
         {
             return this._dbContext.Users.Where(t=>t.Phone == phone).FirstOrDefault();
@@ -23,6 +28,12 @@ namespace CarRental.DataAccess.Repository
             this._dbContext.Users.Add(user);
             this._dbContext.SaveChanges();
             return user.Id;
+        }
+
+        public void UpdateUser(User user)
+        {
+            this._dbContext.Users.Update(user);
+            this._dbContext.SaveChanges();
         }
     }
 }

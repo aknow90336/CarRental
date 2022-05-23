@@ -14,7 +14,7 @@
     "SMS":{
       "Mitake" : {
         "Url": "https://smsapi.mitake.com.tw",
-        "Act": "91421326",
+        "Act": "91421326SMS",
         "Pwd": "!Abc12345!"
       }
     }
