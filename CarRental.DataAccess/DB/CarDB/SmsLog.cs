@@ -7,7 +7,7 @@ namespace CarRental.DataAccess.DB.CarDB
 {
     public partial class SmsLog
     {
-        public int Id { get; set; }
+        public uint Id { get; set; }
         public string Act { get; set; }
         public string MsgId { get; set; }
         public string Message { get; set; }

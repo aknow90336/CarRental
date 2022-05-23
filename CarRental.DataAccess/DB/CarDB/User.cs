@@ -16,6 +16,6 @@ namespace CarRental.DataAccess.DB.CarDB
         public string Creator { get; set; }
         public DateTime? UpdatedTime { get; set; }
         public string Updator { get; set; }
-        public bool? ValidFlag { get; set; }
+        public ulong ValidFlag { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace CarRental.DataAccess.DB.CarDB
 {
     public partial class Merchant
     {
-        public ulong Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         public string TaxId { get; set; }
         public string ManagerName { get; set; }

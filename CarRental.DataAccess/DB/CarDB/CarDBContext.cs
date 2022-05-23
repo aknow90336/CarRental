@@ -29,14 +29,14 @@ namespace CarRental.DataAccess.DB.CarDB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=54.95.104.25;port=3306;database=car;user=root;password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
+                optionsBuilder.UseMySql("server=172.31.32.2;port=3306;database=car;user=root;password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("5.7.38-mysql"));
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasCharSet("utf8mb4")
-                .UseCollation("utf8mb4_0900_ai_ci");
+                .UseCollation("utf8mb4_general_ci");
 
             modelBuilder.Entity<Car>(entity =>
             {
@@ -44,9 +44,12 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.UseCollation("utf8mb4_unicode_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11) unsigned")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Body)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("body")
                     .HasComment("車種 (休旅/箱型/Jeep)");
 
@@ -65,6 +68,7 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasComment("活動");
 
                 entity.Property(e => e.DoorNum)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("door_num")
                     .HasComment("車門數");
 
@@ -79,16 +83,21 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasComment("特殊節日");
 
                 entity.Property(e => e.InsuranceType)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("insurance_type")
                     .HasComment("車體險");
 
                 entity.Property(e => e.MakeId)
+                    .HasColumnType("int(10) unsigned")
                     .HasColumnName("make_id")
                     .HasComment("品牌");
 
-                entity.Property(e => e.MerchantId).HasColumnName("merchant_id");
+                entity.Property(e => e.MerchantId)
+                    .HasColumnType("int(10) unsigned")
+                    .HasColumnName("merchant_id");
 
                 entity.Property(e => e.ModelId)
+                    .HasColumnType("int(10) unsigned")
                     .HasColumnName("model_id")
                     .HasComment("車型");
 
@@ -109,15 +118,18 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasComment("領牌日期");
 
                 entity.Property(e => e.Seat)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("seat")
                     .HasComment("座位數");
 
                 entity.Property(e => e.Status)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("status")
                     .HasDefaultValueSql("'1'")
                     .HasComment("狀態 (上架/下架)");
 
                 entity.Property(e => e.TransmissionType)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("transmission_type")
                     .HasComment("排檔");
 
@@ -147,7 +159,9 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.UseCollation("utf8mb4_unicode_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11) unsigned")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -161,9 +175,13 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.UseCollation("utf8mb4_unicode_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(11) unsigned")
+                    .HasColumnName("id");
 
-                entity.Property(e => e.CarBrandId).HasColumnName("car_brand_id");
+                entity.Property(e => e.CarBrandId)
+                    .HasColumnType("int(10) unsigned")
+                    .HasColumnName("car_brand_id");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -177,7 +195,9 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.UseCollation("utf8mb4_unicode_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(10) unsigned")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.CreatedTime)
                     .HasColumnType("timestamp")
@@ -234,6 +254,7 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasComment("負責人名稱");
 
                 entity.Property(e => e.ManagerPhone)
+                    .HasColumnType("int(11)")
                     .HasColumnName("manager_Phone")
                     .HasComment("負責人電話");
 
@@ -253,6 +274,7 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasComment("平日_起始_營業時間");
 
                 entity.Property(e => e.Status)
+                    .HasColumnType("tinyint(4)")
                     .HasColumnName("status")
                     .HasDefaultValueSql("'1'")
                     .HasComment("狀態");
@@ -295,10 +317,12 @@ namespace CarRental.DataAccess.DB.CarDB
             {
                 entity.ToTable("sms_log");
 
-                entity.HasCharSet("utf8mb3")
+                entity.HasCharSet("utf8")
                     .UseCollation("utf8_general_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(10) unsigned")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.Act)
                     .HasMaxLength(64)
@@ -324,9 +348,13 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasMaxLength(10)
                     .HasColumnName("dst_addr");
 
-                entity.Property(e => e.IsDlv).HasColumnName("is_dlv");
+                entity.Property(e => e.IsDlv)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("is_dlv");
 
-                entity.Property(e => e.IsSend).HasColumnName("is_send");
+                entity.Property(e => e.IsSend)
+                    .HasColumnType("tinyint(4)")
+                    .HasColumnName("is_send");
 
                 entity.Property(e => e.Message)
                     .HasMaxLength(256)
@@ -344,7 +372,9 @@ namespace CarRental.DataAccess.DB.CarDB
                     .HasColumnType("datetime")
                     .HasColumnName("send_time");
 
-                entity.Property(e => e.StatusFlag).HasColumnName("status_flag");
+                entity.Property(e => e.StatusFlag)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("status_flag");
 
                 entity.Property(e => e.UpdatedTime)
                     .HasColumnType("datetime")
@@ -355,10 +385,12 @@ namespace CarRental.DataAccess.DB.CarDB
             {
                 entity.ToTable("user");
 
-                entity.HasCharSet("utf8mb3")
+                entity.HasCharSet("utf8")
                     .UseCollation("utf8_general_ci");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int(10) unsigned")
+                    .HasColumnName("id");
 
                 entity.Property(e => e.CreatedTime)
                     .HasColumnType("timestamp")
@@ -367,9 +399,7 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.Property(e => e.Creator)
                     .HasMaxLength(128)
-                    .HasColumnName("creator")
-                    .UseCollation("utf8mb4_unicode_ci")
-                    .HasCharSet("utf8mb4");
+                    .HasColumnName("creator");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
@@ -377,9 +407,7 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(32)
-                    .HasColumnName("name")
-                    .UseCollation("utf8mb4_0900_ai_ci")
-                    .HasCharSet("utf8mb4");
+                    .HasColumnName("name");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(64)
@@ -396,14 +424,12 @@ namespace CarRental.DataAccess.DB.CarDB
 
                 entity.Property(e => e.Updator)
                     .HasMaxLength(128)
-                    .HasColumnName("updator")
-                    .UseCollation("utf8mb4_unicode_ci")
-                    .HasCharSet("utf8mb4");
+                    .HasColumnName("updator");
 
                 entity.Property(e => e.ValidFlag)
-                    .IsRequired()
+                    .HasColumnType("bit(1)")
                     .HasColumnName("valid_flag")
-                    .HasDefaultValueSql("'1'");
+                    .HasDefaultValueSql("b'1'");
             });
 
             OnModelCreatingPartial(modelBuilder);
