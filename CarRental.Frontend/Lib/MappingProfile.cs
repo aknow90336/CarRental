@@ -3,6 +3,7 @@ using AutoMapper;
 using CarRental.Domain.User;
 using CarRental.Domain.Car;
 using CarRental.DataAccess.DB.CarDB;
+using CarRental.Domain.Car;
 
 namespace CarRental.Frontend.Lib
 {

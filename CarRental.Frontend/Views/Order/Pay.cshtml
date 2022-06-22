@@ -1,0 +1,23 @@
+@model CarRental.Frontend.Models.PayModel
+@{
+    Layout = "";
+}
+<html>
+    <body>
+        <form name="Newebpay" action="@this.Model.NewebUrl" method="post">
+            <input name="Version" value="2.0" hidden>
+            <input name="MerchantID" value="@this.Model.MerchantID" hidden>
+            <input name="TradeInfo" value="@this.Model.TradeInfo" hidden>
+            <input name="TradeSha" value="@this.Model.TradeSha" hidden>
+            <input type="submit" id="submit" hidden>
+        </form>
+        
+    </body>
+    <script type="text/javascript">
+        document.getElementsByName('MerchantID')[0].value = '@this.Model.MerchantID';
+        document.getElementsByName('TradeInfo')[0].value = '@this.Model.TradeInfo';
+        document.getElementsByName('TradeSha')[0].value = '@this.Model.TradeSha';
+        document.getElementById("submit").click();
+    </script>
+</html>
+

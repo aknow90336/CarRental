@@ -8,11 +8,12 @@ namespace CarRental.Service.Impl
     public class CarService : ICarService
     {
         private readonly ICarRepository _carRepository;
-
         private readonly IMapper _mapper;
 
-        public CarService(ICarRepository carRepository,IMapper mapper)
+        public CarService(ICarRepository carRepository, IMapper mapper)
+
         {
+            this._mapper = mapper;
             this._carRepository = carRepository;
             this._mapper = mapper;
         }
@@ -63,7 +64,6 @@ namespace CarRental.Service.Impl
         {
            var car = this._carRepository.GetCarDetailById(id);
            var result = this._mapper.Map<CarDomain>(car);
-
            return result;
         }
     }

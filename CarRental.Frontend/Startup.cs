@@ -29,6 +29,7 @@ namespace CarRental.Frontend
         public void ConfigureServices(IServiceCollection services)
         {
             #region Automatically resolve all dependencies
+
             Assembly.Load("CarRental.DataAccess");
             Assembly.Load("CarRental.Service");
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("CarRental.Service") || x.FullName.Contains("CarRental.DataAccess"));
@@ -43,15 +44,20 @@ namespace CarRental.Frontend
                     }
                 }
             }
+            
             #endregion
+
             #region AutoMap 
+
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
+
             services.AddSingleton(mapper);
+
             #endregion
 
             services.AddDbContext<CarDBContext>(options => options.UseMySql("server=35.201.165.201;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
