@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using CarRental.Domain.User;
+using CarRental.Domain.Car;
 using CarRental.DataAccess.DB.CarDB;
 
 namespace CarRental.Frontend.Lib
@@ -13,6 +14,7 @@ namespace CarRental.Frontend.Lib
             DestinationMemberNamingConvention = new PascalCaseNamingConvention();
 
             CreateMap<UserDomain, User>().ReverseMap();
+            CreateMap<CarDomain, Car>().ReverseMap();
         }
     }
 }

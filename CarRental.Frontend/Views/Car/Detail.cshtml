@@ -97,12 +97,89 @@
       </div>
    </div>    
 </div> 
-<div class="container" style="width: 800px;height: 500px;">
-   <div class="car-desc">
+<div class="container" style="height: 800px;">
+  <div class="car-desc">
       <h1 style="margin:0px auto;padding:5px;"></h1>
       <h4 style="margin:0px auto;padding: 10px;">車齡4年內 自排 人座 門 進口</h4>
    </div>
-   <div class="date-desc-row">
+  <div class="row">
+                <div id="search-input-wrapper" class="col-lg-5 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper pointer">
+                    <input id="search-input" style="margin-left: 10%;" class="controls pointer" type="text" placeholder="租車地點?" value="台北市"/>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">起始時間</div>
+                    <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
+                        <text id="start-date" class="time-range-input">01-01</text>
+                        <select id="start-time" style="font-size: 18px;" class="pointer">
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                     </div>
+                     <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" style="visibility:hidden;" />
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">結束時間</div>
+                    <div class="date-time-wrapper" style="position: absolute; bottom: 0px; right:0px">
+                        <text id="end-date" class="time-range-input">02-01</text>
+                        <select id="end-time"  style="font-size: 18px;" class="pointer">
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="12:00">12:00</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                            <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="20:00">20:00</option>
+                            <option value="21:00">21:00</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                     </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 col-xs-6 vertical-container search-wrapper"> 
+                    <div class="search-text">座位數</div>
+                    <div class="search-bottom">
+                        <select id="car-seat" class="form-control search-drop-down-list pointer" style="font-size: 18px;">
+                            <option value="">座位數</option>
+                            <option value="5">5 人以下</option>
+                            <option value="6">6 人以上</option>
+                            <option value="9">9 人款式</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12 vertical-container search-wrapper">
+                    <button href="#" class="btn btn-default btn-featured btn-inverse btn-round search-btn" onclick="search()">
+                        <i class="fa fa-search btn-round"></i>
+                    </button>
+                     <button class="app-button"  href="#" onclick="search()">
+                         送出
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item active" style="height:100%;width:100%" alt="First slide">
+            <section class="sliderImg d-block img-fluid" style="height:100%;width:100%"></section>
+        </div>
+        <div class="carousel-item" style="height: 100%">
+            <section class="sliderImg2 d-block img-fluid" alt="Second slide" style="height:100%;width:100%"></section>
+        </div>
+    </div>
+   </div>
+   
+   <!--<div class="date-desc-row">
     <table class="dete-table-striped" style="margin:0px auto;padding: 10px;">
         <thead>
             <tr style="text-align:center">
@@ -181,7 +258,11 @@
            </tr>
         </tbody>
       </table>
+   </div>-->
    </div>
+   <div class="car-merchant-detail" style="width: 400px; height:300px; border: 1px solid rgb(221, 221, 221); border-radius: 12px; 
+   padding: 24px; box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; position:fixed;top:380px;right:160px;">
+       
    </div>
 </div>
 <div id="map" class="map">
@@ -190,6 +271,23 @@
 
 @section Scripts
 {
+   <script type="text/javascript" charset="utf-8">
+   var $cache = #('.map');
+   var vTop = $cache.offset().top - parseFloat($cache.css('margin-top').replace(/auto/, 0));
+  $(window).scroll(function (event) {
+    // what the y position of the scroll is
+    var y = $(this).scrollTop();
+
+    // whether that's below the form
+    if (y >= vTop) {
+      // if so, ad the fixed class
+      $cache.addClass('stuck');
+    } else {
+      // otherwise remove it
+      $cache.removeClass('stuck');
+    }
+  });
+   </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }
 

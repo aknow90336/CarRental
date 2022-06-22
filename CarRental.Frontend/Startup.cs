@@ -54,7 +54,7 @@ namespace CarRental.Frontend
             services.AddSingleton(mapper);
             #endregion
 
-            services.AddDbContext<CarDBContext>(options => options.UseMySql("server=172.31.32.2;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
+            services.AddDbContext<CarDBContext>(options => options.UseMySql("server=35.201.165.201;Port=3306;Database=car;User=root;Password=Abc12345", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.18-mysql")), ServiceLifetime.Transient);
             services.AddControllersWithViews(x=>x.SuppressAsyncSuffixInActionNames = false).AddRazorRuntimeCompilation();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>{

@@ -1,6 +1,7 @@
 using CarRental.DataAccess.Interface;
 using System.Collections.Generic;
 using CarRental.Domain.Car;
+using AutoMapper;
 
 namespace CarRental.Service.Impl
 {
@@ -8,9 +9,12 @@ namespace CarRental.Service.Impl
     {
         private readonly ICarRepository _carRepository;
 
-        public CarService(ICarRepository carRepository)
+        private readonly IMapper _mapper;
+
+        public CarService(ICarRepository carRepository,IMapper mapper)
         {
             this._carRepository = carRepository;
+            this._mapper = mapper;
         }
 
         public List<CarDomain> GetCarList()
@@ -58,17 +62,8 @@ namespace CarRental.Service.Impl
         public CarDomain GetCarDetailById(ulong id)
         {
            var car = this._carRepository.GetCarDetailById(id);
-           CarDomain result = new CarDomain(){
-           Seat = car.Seat,
-           DoorNum = car.DoorNum,
-           CustomPrice = car.CustomPrice,
-           NormalPrice = car.NormalPrice,
-           HolidayPrice = car.HolidayPrice,
-           FridayPrice  = car.FridayPrice,
-           WeekendsPrice = car.WeekendsPrice,
-           TransmissionType = car.TransmissionType,
-           InsuranceType = car.InsuranceType
-           };  
+           var result = this._mapper.Map<CarDomain>(car);
+
            return result;
         }
     }
