@@ -176,117 +176,30 @@
         <div class="carousel-item" style="height: 100%">
             <section class="sliderImg2 d-block img-fluid" alt="Second slide" style="height:100%;width:100%"></section>
         </div>
-    </div>
-   </div>
-   
-   <!--<div class="date-desc-row">
-    <table class="dete-table-striped" style="margin:0px auto;padding: 10px;">
-        <thead>
-            <tr style="text-align:center">
-               <th>取車日</th>
-               <th>時間</th>
-               <th>還車日</th>
-               <th>時間</th>
-               <th>地點</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-               <td>
-                  <input class="form-control" type="date" id="pick-up-date" value="2022-03-25" style="width: 160px;"/>
-               </td>
-               <td>
-                  <input class="form-control" type="time" id="pick-up-time" value="10:00" style="width: 150px;"/>
-               </td>
-               <td>
-                  <input class="form-control" type="date" id="drop-off-date" value="2022-04-01" style="width: 160px;"/>
-               </td>
-               <td>
-                  <input class="form-control" type="time" id="drop-off-time" value="10:00" style="width: 150px;"/>
-               </td>
-               <td>
-                  <select id="pick-up-location-selector">
-                  <option value="1">台北車站</option>
-                  <option value="2">台北科技大樓站</option>
-                  <option value="3">松山車站</option>
-                  </select>
-               </td>
-            </tr>
-        </tbody>
-   </table>
-   <div class="equipment-detail" style="padding: 10px;">
-      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
-         <input type="checkbox" id="navi" name="navi">
-         <label for="scales">行車導航</label>
-      </span>
-      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
-         <input type="checkbox" name="safety-seat"/>
-         <label for="scales">兒童座椅</label>
-      </span>
-      <span style="display:inline-block;word-wrap:break-word;width: 200px;">
-         <input type="checkbox" name="recordor"/>
-         <label for="scales">行車記錄器</label>
-      </span>
-   </div>
-   <div class="price-desc-row" style="margin:0px auto;padding: 10px;">
-      <table class="price-table-striped" style="width: 600px;">
-        <label for="price-table-label">價格</label>
-        <tbody style="padding:10px;">
-           <tr>
-              <td>
-                 單日租車價
-              </td>
-              <td>
-                 NT$ 3000
-              </td>
-           </tr>
-           <tr>
-              <td>
-                 保險
-              </td>
-              <td>
-                 NT$ 120
-              </td>
-           </tr>
-           <tr>
-              <td>
-                 總價
-              </td>
-              <td>
-                 NT$ 5600
-              </td>
-           </tr>
-        </tbody>
-      </table>
-   </div>-->
-   </div>
    <div class="car-merchant-detail" style="width: 400px; height:300px; border: 1px solid rgb(221, 221, 221); border-radius: 12px; 
    padding: 24px; box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; position:fixed;top:380px;right:160px;">
        
    </div>
-</div>
 <div id="map" class="map">
-
 </div>
-
 @section Scripts
 {
    <script type="text/javascript" charset="utf-8">
-   var $cache = #('.map');
-   var vTop = $cache.offset().top - parseFloat($cache.css('margin-top').replace(/auto/, 0));
-  $(window).scroll(function (event) {
-    // what the y position of the scroll is
-    var y = $(this).scrollTop();
-
-    // whether that's below the form
-    if (y >= vTop) {
-      // if so, ad the fixed class
-      $cache.addClass('stuck');
-    } else {
-      // otherwise remove it
-      $cache.removeClass('stuck');
-    }
-  });
+      var form = $('#postform')[0];
+      var formData = new FormData(form);
+       $.ajax({
+                type: "POST",
+                url: "@Url.Action("Detail","Car")",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data, textStatus, jqXHR) {
+                  alert("success");
+                },
+                error: function (data, textStatus) {
+                  alert(formData);
+                },
+            })
    </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }

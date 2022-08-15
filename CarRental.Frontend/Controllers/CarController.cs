@@ -35,5 +35,14 @@ namespace CarRental.Frontend.Controllers
             };
             return View(result);
         }
+
+        [HttpPost]
+        public IActionResult GetDetail(ulong id)
+        {
+            var result = new CarDetailResponseModel(){
+                Car = this._carService.GetCarDetailById(id),
+                Mercnaht = this._carService.GetMerechantDetailById(id)
+            return View(result);
+        }
     }
 }

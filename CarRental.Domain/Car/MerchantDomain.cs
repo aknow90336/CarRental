@@ -5,8 +5,11 @@ namespace CarRental.Domain.Car
     public class MerchantDomain
     {
         public ulong Id { get; set; }
+
         public string Name { get; set; }
+
         public string TaxId { get; set; }
+        
         public string ManagerName { get; set; }
         public int? ManagerPhone { get; set; }
         public string Tel { get; set; }
