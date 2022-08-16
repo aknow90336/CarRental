@@ -299,26 +299,26 @@
         }; *@
 
         function replaceAll(str, map){
-        for(key in map){
-            str = str.replaceAll(key, map[key]);
-        }
-        return str;
+            for(key in map){
+                str = str.replaceAll(key, map[key]);
+            }
+            return str;
         }
 
         function detail(id){
-        var date = window.localStorage.getItem('date');
-        var map = {
-           '{' : '',
-           '}' : '',
-           ':' : '=',
-           '"' : '',
-           ',' : '&',
-           '-' : '/'
-        };
-        var result = replaceAll(date, map);
-        window.localStorage.clear();
-        window.location.href = '@Url.Action("Detail", "Car")' + '?id=' + id +'&'+ result;
-    }
+            var date = window.localStorage.getItem('date');
+            var map = {
+                '{' : '',
+                '}' : '',
+                ':' : '=',
+                '"' : '',
+                ',' : '&',
+                '-' : '/'
+            };
+            var result = replaceAll(date, map);
+            window.localStorage.clear();
+            window.location.href = '@Url.Action("Detail", "Car")' + '?id=' + id +'&'+ result;
+        }
     </script> 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACsFWSf_Dgt5Zr90lP1T4vYJozD-_11vU&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }

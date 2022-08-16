@@ -1,4 +1,4 @@
-﻿@model  CarRental.Frontend.Models.Car.CarDetailResponseModel
+﻿@model CarRental.Frontend.Models.Car.CarDetailResponseModel
 @{  
     ViewBag.Title = "Detail";  
 } 
@@ -185,7 +185,7 @@
 @section Scripts
 {
    <script type="text/javascript" charset="utf-8">
-      var form = $('#postform')[0];
+      @* var form = $('#postform')[0];
       var formData = new FormData(form);
        $.ajax({
                 type: "POST",
@@ -199,7 +199,37 @@
                 error: function (data, textStatus) {
                   alert(formData);
                 },
-            })
+            }) *@
+      var $cache = #('.map');
+      var vTop = $cache.offset().top - parseFloat($cache.css('margin-top').replace(/auto/, 0));
+      $(window).scroll(function (event) {
+         // what the y position of the scroll is
+         var y = $(this).scrollTop();
+
+         // whether that's below the form
+         if (y >= vTop) {
+            // if so, ad the fixed class
+            $cache.addClass('stuck');
+         } else {
+            // otherwise remove it
+            $cache.removeClass('stuck');
+         }
+      });
+      alert(7);
+      $.ajax({
+            type: "Get",
+            url: "@Url.Action("GetDetail","Car")",
+            data: { 
+               id: 1
+            },
+            dataType: "json",
+            success: function (data, textStatus, jqXHR) {
+               alert(data);
+            },
+            error: function (data, textStatus) {
+               alert("RRRRR");
+            },
+      })
    </script>
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAerAi8TQQPGAZSG-IDzjIM2tsh5Ai2QEk&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cA" async defer></script>
 }

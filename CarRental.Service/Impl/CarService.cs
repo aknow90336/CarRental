@@ -20,18 +20,7 @@ namespace CarRental.Service.Impl
 
         public List<CarDomain> GetCarList()
         {   
-            List<CarDomain> result = new List<CarDomain>();
-
-            // N Mapping
-            foreach(var item in this._carRepository.GetCarList())
-            {
-                result.Add(new CarDomain(){
-                    DoorNum = item.DoorNum,
-                    Seat = item.Seat,
-                    Id = item.Id
-                });
-            }
-            
+            var result = this._mapper.Map<List<CarDomain>>(this._carRepository.GetCarList());
             return result;
         }
 

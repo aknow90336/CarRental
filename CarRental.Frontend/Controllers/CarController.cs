@@ -36,13 +36,20 @@ namespace CarRental.Frontend.Controllers
             return View(result);
         }
 
-        [HttpPost]
+        // [HttpPost]
+        // public IActionResult GetDetail(ulong id)
+        // {
+        //     var result = new CarDetailResponseModel(){
+        //         Car = this._carService.GetCarDetailById(id),
+        //         Mercnaht = this._carService.GetMerechantDetailById(id)
+        //     return View(result);
+        // }        
+        
+        [HttpGet]
         public IActionResult GetDetail(ulong id)
         {
-            var result = new CarDetailResponseModel(){
-                Car = this._carService.GetCarDetailById(id),
-                Mercnaht = this._carService.GetMerechantDetailById(id)
-            return View(result);
+            throw new System.Exception();
+            return this.Content("Success");
         }
     }
 }
